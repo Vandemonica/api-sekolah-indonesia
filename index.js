@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const puppeteer = require('puppeteer');
 const express = require('express');
 
@@ -40,6 +42,6 @@ app.get('/', async function(req, res) {
   res.json(await main(req.query.search, req.query.page ?? 1));
 });
 
-app.listen(3000, function() {
-  console.log('Running on http://localhost:3000');
+app.listen(process.env.APP_PORT, function() {
+  console.log(`Running on http://localhost:${process.env.APP_PORT}`);
 });
