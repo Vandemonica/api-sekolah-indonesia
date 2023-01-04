@@ -11,6 +11,13 @@ async function main(querySearch, queryPage) {
   await page.waitForSelector('#table1_wrapper');
   await page.select('select[name="table1_length"]', '100');
 
+  if (queryPage > 0) {
+    for (let i = 0; i < (queryPage - 1); i++){
+      await page.click('#table1_wrapper #table1_next');
+    }
+  }
+
+
   const results = await page.evaluate(() => {
     const rows = document.querySelectorAll('#table1_wrapper tbody tr');
 
@@ -27,10 +34,10 @@ async function main(querySearch, queryPage) {
 
 app.get('/', async function(req, res) {
   if (typeof req.query.search === 'undefined') {
-    res.send('Tolong berikan GET query param')
+    res.send('Tolong sertakan GET query params `search`')
   }
 
-  res.json(await main(req.query.search, req.query.page));
+  res.json(await main(req.query.search, req.query.page ?? 1));
 });
 
 app.listen(3000, function() {
