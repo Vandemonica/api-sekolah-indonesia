@@ -4,11 +4,32 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 
 const app = express();
-const APP_PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.APP_PORT || 3000;
+const ignoredDOM = ['stylesheet', 'font', 'image'];
 
 async function main(querySearch, queryPage) {
-  const browser = await puppeteer.launch({});
+  const browser = await puppeteer.launch({
+    headless: true,
+    devtools: false,
+    args: [
+      `--no-sandbox`,
+      `--disable-setuid-sandbox`,
+      `--ignore-certificate-errors`
+    ]
+  });
+
   const page = await browser.newPage();
+
+  await page.setViewport({ width: 375, height: 667 });
+  await page.setRequestInterception(true);
+
+  page.on('request', (req) => {
+    if(ignoredDOM.includes(req.resourceType())) {
+      req.abort();
+    } else {
+      req.continue();
+    }
+  });
 
   await page.goto(`https://referensi.data.kemdikbud.go.id/pendidikan/cari/${querySearch}`);
   await page.waitForSelector('#table1_wrapper');
@@ -44,6 +65,6 @@ app.get('/', async function(req, res) {
   res.json(await main(req.query.search, req.query.page ?? 1));
 });
 
-app.listen(APP_PORT, function() {
-  console.log(`Running on http://localhost:${APP_PORT}`);
+app.listen(PORT, function() {
+  console.log(`Running on http://localhost:${PORT}`);
 });
