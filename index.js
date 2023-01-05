@@ -21,10 +21,10 @@ async function main(querySearch, queryPage) {
 
 
   const results = await page.evaluate(() => {
-    const rows = document.querySelectorAll('#table1_wrapper tbody tr');
+    const rows = [...document.querySelectorAll('#table1_wrapper tbody tr')];
 
-    return Array.from(rows, row => {
-      return Array.from(row.querySelectorAll('td'), column => column.innerText);
+    return rows.map(row => {
+      return [...row.querySelectorAll('td')].map(column => column.innerText);
     });
   });
 
