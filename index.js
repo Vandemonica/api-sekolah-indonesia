@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 
 const app = express();
+const APP_PORT = process.env.APP_PORT || 3000;
 
 async function main(querySearch, queryPage) {
   const browser = await puppeteer.launch({});
@@ -28,6 +29,7 @@ async function main(querySearch, queryPage) {
     });
   });
 
+  console.log('Data fetched!');
   browser.close();
 
   return results;
@@ -42,6 +44,6 @@ app.get('/', async function(req, res) {
   res.json(await main(req.query.search, req.query.page ?? 1));
 });
 
-app.listen(process.env.APP_PORT, function() {
-  console.log(`Running on http://localhost:${process.env.APP_PORT}`);
+app.listen(APP_PORT, function() {
+  console.log(`Running on http://localhost:${APP_PORT}`);
 });
