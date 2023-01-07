@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 
 const app = express();
-const PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const ignoredDOM = ['stylesheet', 'font', 'image'];
 
 async function main(querySearch, queryPage) {
