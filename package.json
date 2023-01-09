@@ -4,6 +4,8 @@
   "description": "REST API of Indonesian schools",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "build": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
