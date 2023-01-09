@@ -1,19 +1,31 @@
 {
-  "name": "npsn-scrapper",
+  "name": "npsn-sekolah-indonesia",
   "version": "1.0.0",
-  "description": "Data scrapper to get list of school NPSN",
+  "description": "REST API of Indonesian schools",
   "main": "index.js",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "puppeteer": "18.1.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "build": "npm install",
-    "start": "node node_modules/puppeteer/install.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vandemonica/npsn-sekolah-indonesia.git"
+  },
+  "keywords": [
+    "API",
+    "RESTAPI",
+    "Indonesia",
+    "NodeJS"
+  ],
   "author": "Vandemonica",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vandemonica/npsn-sekolah-indonesia/issues"
+  },
+  "homepage": "https://github.com/Vandemonica/npsn-sekolah-indonesia#readme",
+  "dependencies": {
+    "axios": "^1.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
 }
