@@ -88,14 +88,14 @@ async function main(querySearch, queryPage) {
 }
 
 
+app.listen(PORT, function() {
+  console.log(`Running on http://localhost:${PORT}`);
+});
+
 app.get('/', async function(req, res) {
   if (typeof req.query.search === 'undefined') {
     res.send('Tolong sertakan GET query params `search`')
+  } else {
+    res.json(await main(req.query.search, req.query.page ?? 1));
   }
-
-  res.json(await main(req.query.search, req.query.page ?? 1));
-});
-
-app.listen(PORT, function() {
-  console.log(`Running on http://localhost:${PORT}`);
 });
