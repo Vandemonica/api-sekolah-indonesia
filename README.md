@@ -36,4 +36,5 @@ Data ini diteruskan dari endpoint di situs pemerintah gunakanlah dengan bijak.
 
 ## License
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
 **[About MIT license](http://opensource.org/licenses/mit-license.php)**
