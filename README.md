@@ -4,9 +4,8 @@
 
 
 ## Endpoint
-`
+
 https://api-sekolah-indonesia.adaptable.app?keyword=
-`
 **Keyword**: the search keyword whether it's school name or NPSN
 
 ### Example Request
